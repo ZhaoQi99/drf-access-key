@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: DRF Access Key\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-07 15:59+0800\n"
+"PO-Revision-Date: 2023-03-07 15:57+0800\n"
+"Last-Translator: Qi Zhao <zhaoqi99@outlook.com>\n"
+"Language-Team: \n"
+"Language: zh-Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: rest_framework_access_key/admin.py:21
+msgid "Basic"
+msgstr "基础信息"
+
+#: rest_framework_access_key/admin.py:24
+msgid "AccessKey/SecretKey"
+msgstr "AccessKey/SecretKey"
+
+#: rest_framework_access_key/admin.py:37
+msgid "efficient"
+msgstr "是否有效"
+
+#: rest_framework_access_key/admin.py:44
+msgid "Disable select AccessKey"
+msgstr "禁用选中的AccessKey"
+
+#: rest_framework_access_key/apps.py:7
+msgid "OpenAPI AccessKey"
+msgstr "OpenAPI 访问密钥"
+
+#: rest_framework_access_key/models.py:10
+msgid "name"
+msgstr "名称"
+
+#: rest_framework_access_key/models.py:11
+msgid "description"
+msgstr "描述"
+
+#: rest_framework_access_key/models.py:12
+msgid "enable"
+msgstr "启用"
+
+#: rest_framework_access_key/models.py:13
+#: rest_framework_access_key/models.py:30
+msgid "AccessKey"
+msgstr "AccessKey"
+
+#: rest_framework_access_key/models.py:14
+msgid "SecretKey"
+msgstr "SecretKey"
+
+#: rest_framework_access_key/models.py:15
+msgid "expiration time"
+msgstr "过期时间"
