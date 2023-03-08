@@ -8,11 +8,11 @@ A library that provides a simple Access Key &amp; Secret Key authorization for D
 
 ## Install
 ```shell
-pip install git+https://github.com/ZhaoQi99/drf-access-key.git
-or
-pip install drf-access-key #TODO
+pip install drf-access-key
 ✨🍰✨
 ```
+Or you can use `pip install git+https://github.com/ZhaoQi99/drf-access-key.git
+` install latest version.
 ## Quick Start
 
 1. Add `rest_framework_access_key` to `INSTALLED_APPS` setting:
