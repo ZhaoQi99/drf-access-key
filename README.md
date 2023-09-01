@@ -54,7 +54,7 @@ class TestViewSet(generics.GenericAPIView):
 
 ## How to use
 
-[Authentication Method Document 🇨🇳](docs/auth.md) 
+[Authentication Method Document 🇨🇳](https://github.com/ZhaoQi99/drf-access-key/blob/main/docs/auth.md) 
 
 ```ini
 GET /api/v1/user/ HTTP/1.1
