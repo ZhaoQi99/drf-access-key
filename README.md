@@ -1,6 +1,12 @@
 # DRF Access Key
-A library that provides a simple Access Key &amp; Secret Key authorization for Django REST framework.
+[![Python version](https://img.shields.io/pypi/pyversions/drf-access-key.svg?logo=python)](https://pypi.python.org/pypi/drf-access-key)
+![PyPI - Versions from Framework Classifiers](https://img.shields.io/pypi/frameworkversions/django/drf-access-key)
+[![PyPI package](https://img.shields.io/pypi/v/drf-access-key.svg)](https://pypi.python.org/pypi/drf-access-key)
+[![PyPI download](https://img.shields.io/pypi/dm/drf-access-key.svg)](https://pypi.python.org/pypi/drf-access-key)
+[![GitHub](https://img.shields.io/github/license/ZhaoQi99/drf-access-key)](https://github.com/ZhaoQi99/drf-access-key/blob/main/LICENSE)
+![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/ZhaoQi99/drf-access-key)
 
+A library that provides a simple Access Key &amp; Secret Key authorization for Django REST framework.
 ## Requirements
 * Python 3.6+
 * [Django](https://docs.djangoproject.com/) 2.X+
