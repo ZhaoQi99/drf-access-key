@@ -40,7 +40,7 @@ class Signer:
 
     def get_string_to_sign(self):
         signed_tuple = (
-            self._request.method,
+            self._request.method.upper(),
             self.get_content_md5(),
             self.get_signed_headers(),
             self.get_path_and_params(),
@@ -51,19 +51,24 @@ class Signer:
         return self._sign(self.get_string_to_sign(), secret_key)
 
     def get_content_md5(self):
-        body = json.dumps(
-            self._request.data,
+        body = self._request.data
+
+        if not body:
+            return ""
+
+        body_str = json.dumps(
+            body,
             sort_keys=True,
             separators=(",", ":"),
             ensure_ascii=False,
         ).encode()
-        return base64.b64encode(hashlib.md5(body).digest()).decode()
+        return base64.b64encode(hashlib.md5(body_str).digest()).decode()
 
     def get_signed_headers(self):
         headers = self._request.headers
-        return "\n".join([
-            f"{header}:{headers.get(header, '')}" for header in sorted(SIGNED_HEADERS)
-        ])
+        return "\n".join(
+            [f"{header}:{headers.get(header, '')}" for header in sorted(SIGNED_HEADERS)]
+        )
 
     def get_path_and_params(self):
         path = self._request.path
@@ -74,8 +79,10 @@ class Signer:
 
     def _sign(self, raw_str: str, secret_key: str):
         return base64.b64encode(
-            hmac.new(secret_key.encode(), raw_str.encode(),
-                     digestmod=hashlib.sha256).digest()).decode()
+            hmac.new(
+                secret_key.encode(), raw_str.encode(), digestmod=hashlib.sha256
+            ).digest()
+        ).decode()
 
     def tuple2str(self, t):
         return "&".join(["=".join(item) for item in t])
@@ -115,9 +122,10 @@ class AccessKeyAuthentication(authentication.BaseAuthentication):
         sign = Signer(request)
         real_signature = sign.get_signature(secret_key)
         if signature != real_signature:
-            raise AuthenticationFailed("Invalid Signature,StringToSign: %s" %
-                                       sign.get_string_to_sign())
-        return type("AccessKey", (object, ), dict(is_authenticated=True)), None
+            raise AuthenticationFailed(
+                "Invalid Signature,StringToSign: %s" % sign.get_string_to_sign()
+            )
+        return type("AccessKey", (object,), dict(is_authenticated=True)), None
 
     def authenticate_header(self, request):
         return '{} realm="{}"'.format(AUTH_HEADER, self.www_authenticate_realm)
@@ -139,8 +147,10 @@ class AccessKeyAuthentication(authentication.BaseAuthentication):
     def validate_timestamp(self, timestamp):
         timestamp = int(timestamp)
         current_time = int(timezone.now().timestamp())
-        if abs(current_time -
-               timestamp) > timedelta(seconds=self.error_range).total_seconds():
+        if (
+            abs(current_time - timestamp)
+            > timedelta(seconds=self.error_range).total_seconds()
+        ):
             raise PermissionDenied("Auth-Timestamp is invalid.")
 
     def validate_nonce(self, nonce):
