@@ -175,7 +175,7 @@ String signature = Base64.encodeBase64String(sha256Result);
           )
 
       def tuple2str(self, t):
-          return "&".join(["=".join(item) for item in t])
+          return "&".join(["=".join(map(str, item)) for item in t])
 
       def get_path_and_params(self, path, params=None):
           if params:
@@ -226,9 +226,9 @@ String signature = Base64.encodeBase64String(sha256Result);
           string_to_sign = "\n".join(signed_tuple)
           headers[SIGNATURE_HEADER] = self.get_signature(string_to_sign)
 
-					return self._client.request(
-							method, url, headers=headers, params=params, json=json, **kwargs
-					)
+          return self._client.request(
+              method, url, headers=headers, params=params, json=json, **kwargs
+          )
 
       def get(self, path, params=None, **kwargs):
           return self.request("GET", path, params=params, **kwargs)
@@ -241,10 +241,10 @@ String signature = Base64.encodeBase64String(sha256Result);
       secret_key = "<SecretKey>"
       client = Client("http://localhost:8000", access_key, secret_key)
       body = {
-          "hello": "hello, world",
+          "hello": "hello-world",
       }
-			rep = client.post("/api/v1/hello/", json=body)
-			print(rep.json())
+      rep = client.post("/api/v1/hello/", json=body)
+      print(rep.json())
 
   ```
   </details>
