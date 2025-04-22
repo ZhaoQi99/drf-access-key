@@ -87,6 +87,15 @@ class Signer:
     def tuple2str(self, t):
         return "&".join(["=".join(item) for item in t])
 
+class AccessKey:
+    is_authenticated = True
+
+    def __init__(self, access_key, auth=None):
+        self.access_key = access_key
+        self.auth = auth
+
+    def __str__(self) -> str:
+        return "AccessKey: {}".format(self.access_key)
 
 class AccessKeyAuthentication(authentication.BaseAuthentication):
     """
@@ -125,7 +134,7 @@ class AccessKeyAuthentication(authentication.BaseAuthentication):
             raise AuthenticationFailed(
                 "Invalid Signature,StringToSign: %s" % sign.get_string_to_sign()
             )
-        return type("AccessKey", (object,), dict(is_authenticated=True)), None
+        return AccessKey(access_key, obj), None
 
     def authenticate_header(self, request):
         return '{} realm="{}"'.format(AUTH_HEADER, self.www_authenticate_realm)
